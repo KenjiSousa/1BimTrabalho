@@ -1,7 +1,7 @@
 # 1BimTrabalho
 Repositório para trabalho do 1º bimestre da disciplina de FUNDAMENTOS DE PROGRAMAÇÃO PARA INTERNET
 
-## Integrantes: as
+## Integrantes:
 
 | Nome | RA |
 | --- | --- |
