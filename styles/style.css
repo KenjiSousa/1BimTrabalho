@@ -6,7 +6,11 @@
 /* Barra de cabeçalho */
 body {
     margin: 0;
-    background-color: black;
+    background-image: url(/imagens/senna.webp);
+    background-position-y: -200px;
+    background-size: cover;
+    background-attachment: fixed;
+    backdrop-filter: brightness(50%);
     color: white;
     font-family: Ubuntu;
     font-weight: bold;
@@ -21,8 +25,17 @@ body {
     height: 70px;
 }
 
-h1 {
-    margin-left: 30px;
+.subtitulo {
+    background-image: linear-gradient(to right, #0007, #0000 );
+    height: 80px;
+    font-size: 2em;
+}
+
+.subtituloMeio {
+    margin: 0 0 0 30px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .fia, .titulo, .f1 {
@@ -97,11 +110,21 @@ tr:nth-child(2) {
     background-color: #001f2f;
 }
 
-tr:nth-child(2n+3) {
+tr:nth-child(3), tr:nth-child(4), tr:nth-child(5) {
+    background-image: url(/imagens/istockphoto-1328202997-612x612.jpg);
+    background-size: cover;
+    background-position-y: 28%;
+}
+
+tr:nth-child(3) td, tr:nth-child(4) td, tr:nth-child(5) td {
+    backdrop-filter: brightness(50%);
+}
+
+tr:nth-child(2n+6) {
     background-color: #3f4f4f;
 }
 
-tr:nth-child(2n+4) {
+tr:nth-child(2n+7) {
     background-color: #1f2f2f;
 }
 
