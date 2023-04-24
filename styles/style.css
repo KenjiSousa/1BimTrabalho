@@ -3,11 +3,9 @@
     src: url(/fontes/Formula1-Bold_web_0.ttf);
 }
 
-/* Barra de cabeçalho */
 body {
     margin: 0;
     background-image: url(/imagens/senna.webp);
-    background-position-y: -200px;
     background-size: cover;
     background-attachment: fixed;
     backdrop-filter: brightness(50%);
@@ -16,26 +14,14 @@ body {
     font-weight: bold;
 }
 
-.cabeçalho {
+#cabeçalho {
     position: sticky;
     top: 0;
     background-image: linear-gradient(#df0000, #7f0000);
     display: table;
     width: 100%;
     height: 70px;
-}
-
-.subtitulo {
-    background-image: linear-gradient(to right, #0007, #0000 );
-    height: 80px;
-    font-size: 2em;
-}
-
-.subtituloMeio {
-    margin: 0 0 0 30px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    z-index: 1; /* evita conteúdo do corpo ficando em cima do cabeçalho */
 }
 
 .fia, .titulo, .f1 {
@@ -43,146 +29,189 @@ body {
     vertical-align: middle;
     width: auto;
 }
-
-.fia img, .f1 img {
-    display: block;
-    width: 240px;
-}
-
 .titulo {
-    width: 90%;
+    /* no display de tabela com width: auto, primeiro estabelece o espaço das imagens,
+    depois o width: 100% deixa o restante do espaço para o título */
+    width: 100%;
     text-align: center;
     font-family: Formula1;
     word-spacing: 0.4ch;
 }
-
-.fia, .fia *, .f1 {
+.fia img, .f1 img {
+    display: block;
+    padding: 5px;
+}
+.fia, .fia *, .f1, .f1 * {
     height: inherit;
 }
 
-.f1 * {
-    padding: 5px;
-    height: 60px;
+.subtitulo {
+    background-image: linear-gradient(to right, #0007, #0000 );
+    height: 80px;
+    vertical-align: middle;
+}
+.subtitulo h1 {
+    display: inline-block;
+    margin-left: 30px;
 }
 
 /* Tabelas */
 table {
-    display: inline-block;
+    display: inline-block; /* permite distribuição horizontal caso caiba na tela */
     vertical-align: top;
-    margin: 0 13px 30px 13px;
+    margin: 15px 13px;
     background-color: #1f1f1f;
     border: 2px solid darkcyan;
-    border-radius: 10px;
+    border-radius: 10px; /* Bordas arredondadas */
+}
+.tabGp tr:first-child td {
+    text-align: center; /* Título das tabelas é centralizado */
 }
 
-/* Bordas arredondadas para tabelas */
-tr:first-child td {
-    border-radius: 8px 8px 0 0;
+/* Bordas arredondadas */
+tr:first-child td:first-child {
+    border-radius: 6px 0 0 0;
 }
-
-/* Bordas arredondadas para tabelas */
+tr:first-child td:last-child {
+    border-radius: 0 6px 0 0;
+}
 tr:last-child td:first-child {
-    border-radius: 0 0 0 8px;
+    border-radius: 0 0 0 6px;
 }
-
-/* Bordas arredondadas para tabelas */
 tr:last-child td:last-child {
-    border-radius: 0 0 8px 0;
-}
-
-td {
-    padding: 0 10px;
+    border-radius: 0 0 6px 0;
 }
 
 tr {
     height: 35px;
 }
-
-td:not(:nth-child(3)):not(:nth-child(4)) {
-    text-align: center;
+td {
+    padding: 0 10px;
 }
 
-tr:nth-child(1) {
-    background-color: #003f4f;
+.tabGpPiloto td:not(:nth-child(3)):not(:nth-child(4)) {
+    text-align: center; /* centraliza texto das colunas exceto para piloto e equipe */
+}
+.tabGpEquipe td:not(:nth-child(2)) {
+    text-align: center; /* centraliza texto das colunas exceto para equipe */
 }
 
-tr:nth-child(2) {
-    background-color: #001f2f;
-}
-
-tr:nth-child(3), tr:nth-child(4), tr:nth-child(5) {
-    background-image: url(/imagens/istockphoto-1328202997-612x612.jpg);
-    background-size: cover;
-    background-position-y: 28%;
-}
-
-tr:nth-child(3) td, tr:nth-child(4) td, tr:nth-child(5) td {
-    backdrop-filter: brightness(50%);
-}
-
-tr:nth-child(2n+6) {
-    background-color: #3f4f4f;
-}
-
-tr:nth-child(2n+7) {
-    background-color: #1f2f2f;
-}
-
-tr:nth-child(n+3) td:first-child {
-    font-family: Formula1;
-}
-
-td:nth-child(2) * {
+/* células da coluna "País" */
+.tabGpPiloto td:nth-child(2) * {
     display: inline-block;
     vertical-align: middle;
 }
-
-td:nth-child(2) img {
+.tabGpPiloto td:nth-child(2) img {
     width: 30px;
     height: 20px;
     border: 1px solid white;
     border-radius: 4px;
     object-fit: cover;
 }
-
-td:nth-child(2) p {
+.tabGpPiloto td:nth-child(2) p {
     font-family: 'Courier New', Courier, monospace;
     margin-block: 0;
 }
 
-/* posicionamento */
-td:nth-child(1) p {
-    margin-block: 0;
+.tabGp tr:nth-child(1) { /* título das tabelas */
+    background-color: #003f4f;
+    font-size: 20px;
+}
+.tabGp tr:nth-child(2) { /* cabeçalho das tabelas */
+    background-color: #001f2f;
 }
 
+/* 3 primeiros lugares ficam com fundo diferenciado */
+.tabGp tr:nth-child(3), .tabGp tr:nth-child(4), .tabGp tr:nth-child(5) {
+    background-image: url(/imagens/istockphoto-1328202997-612x612.jpg);
+    background-size: cover;
+    background-position-y: 28%;
+}
+.tabGp tr:nth-child(3) td, .tabGp tr:nth-child(4) td, .tabGp tr:nth-child(5) td {
+    backdrop-filter: brightness(50%);
+}
+
+/* alterna fundos entre linhas pares/impares */
+.tabGp tr:nth-child(2n+6) {
+    background-color: #3f4f4f;
+}
+.tabGp tr:nth-child(2n+7) {
+    background-color: #1f2f2f;
+}
+
+/* alterna fundos entre linhas pares/impares */
+.tabPontos tr:nth-child(2n+1) td, .tabMembros tr:nth-child(2n+1) td:last-child {
+    background-color: #3f4f4f;
+}
+.tabPontos tr:nth-child(2n+2) td, .tabMembros tr:nth-child(2n+2) td:last-child {
+    background-color: #1f2f2f;
+}
+
+/* numerais de posição com fonte diferente */
+.tabGp tr:nth-child(n+3) td:first-child {
+    font-family: Formula1;
+}
+
+/* posicionamento */
+.tabGp td:nth-child(1) p {
+    margin-block: 0;
+}
 /* 1º lugar */
-tr:nth-child(3) td:nth-child(1) p {
+.tabGp tr:nth-child(3) td:nth-child(1) p {
     color: gold;
     text-shadow: 1px 1px 0 white,
                  -1px 1px 0 white,
                  1px -1px 0 white,
                  -1px -1px 0 white;
 }
-
 /* 2º lugar */
-tr:nth-child(4) td:nth-child(1) p {
+.tabGp tr:nth-child(4) td:nth-child(1) p {
     color: silver;
     text-shadow: 1px 1px 0 white,
                  -1px 1px 0 white,
                  1px -1px 0 white,
                  -1px -1px 0 white;
 }
-
 /* 3º lugar */
-tr:nth-child(5) td:nth-child(1) p {
+.tabGp tr:nth-child(5) td:nth-child(1) p {
     color: #CD7F32;
     text-shadow: 1px 1px 0 white,
                  -1px 1px 0 white,
                  1px -1px 0 white,
                  -1px -1px 0 white;
 }
-
 /* outros lugares */
 tr:nth-child(n+6) td:nth-child(1) p {
     color: #bfbfbf;
+}
+tr.semPosicao {
+    color: #fff7;
+}
+
+.tabMembros {
+    line-height: 3.5ch;
+}
+
+.tabMembros tr:nth-child(2n+1) td:first-child {
+    background-color: #cdcdcd;
+    position: relative;
+    padding: 0;
+    height: 160px;
+}
+
+.membro-logo {
+    padding: 5px;
+    width: 160px;
+    filter: brightness(80%);
+}
+
+.membro-nome {
+    position: absolute;
+    width: 160px;
+    font-size: 24px;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 0 3px 15px black;
 }
